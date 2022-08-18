@@ -4,9 +4,8 @@ import Colors from '../assets/colors'
 import { WIDTH_SCREEN, HEIGHT_SCREEN } from '../ultilities/Constant'
 
 function SplashScreen({navigation}) {
-  setTimeout(()=>{
-    navigation.navigate('Login')
-  },2000)
+
+ 
 
   return (
     <View style={styles.container}>
