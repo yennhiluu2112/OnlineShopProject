@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect,useContext } from 'react'
 import { 
     View, 
     Text , 
@@ -14,21 +14,14 @@ import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome5'
 import { CustomButton, InputField } from '../components'
 import {
     auth,
-    onAuthStateChanged,
     signInWithEmailAndPassword
   } from '../firebase/firebase'
+import { AuthContext } from '../auth/AuthProvider'
 function LoginScreen({navigation}) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
-    useEffect(()=>{
-        onAuthStateChanged(auth, (user) => {
-            if (user){
-                const userId = user.uid
-                navigation.navigate('Home')
-            }
-        })
-    },[])
+    const { login } = useContext(AuthContext);
+    
     return (
     <SafeAreaView style={styles.container}>
         <View>
@@ -68,14 +61,7 @@ function LoginScreen({navigation}) {
             <CustomButton 
                 label={'Login'}
                 onPress={()=>{
-                    signInWithEmailAndPassword(auth, email, password)
-                        .then((userCredential) => {
-                            const user = userCredential.user;
-                        })
-                        .catch((error) => {
-                            alert(`Error Login: ${error.message}`);
-                        })
-                    
+                    login(email,password)
                     setEmail('')
                     setPassword('')
                 }}

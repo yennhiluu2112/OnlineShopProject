@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import {
   View,
   Text,
@@ -14,31 +14,33 @@ import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome5'
 import { CustomButton, InputField } from '../components'
 import {
   auth,
-  firebaseDatabase,
   createUserWithEmailAndPassword,
 } from '../firebase/firebase'
+import { AuthContext } from '../auth/AuthProvider'
 function RegisterScreen({ navigation }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const { signup } = useContext(AuthContext);
 
-  const createUser = () => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((useCredential) => {
-        const user = useCredential.user
-        alert('Successfully registered')
-      })
-      .catch((error) => {
-        alert(`Cannot sign up, error ${error.message} Email: ${email}`)
-      })
+  // const createUser = () => {
+  //   createUserWithEmailAndPassword(auth, email, password)
+  //     .then((useCredential) => {
+  //       const user = useCredential.user
+  //       alert('Successfully registered')
+  //     })
+  //     .catch((error) => {
+  //       alert(`Cannot sign up, error ${error.message} Email: ${email}`)
+  //     })
 
-    setEmail('')
-    setPassword('')
+  //   setEmail('')
+  //   setPassword('')
 
-  }
+  // }
 
   useEffect(() => {
     debugger
   })
+
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -58,7 +60,7 @@ function RegisterScreen({ navigation }) {
             style={styles.emailIcon}
             keyboardType={'email-address'}
           />}
-          onChangeText={text => setEmail(text)} //cha truyen props o day ne, adu, truyen tao lao r =))
+          onChangeText={text => setEmail(text)} 
 
         />
         <InputField
@@ -86,7 +88,8 @@ function RegisterScreen({ navigation }) {
         />
         <CustomButton
           label={'Register'}
-          onPress={createUser} />
+          onPress={()=>signup(email,password)} 
+        />
 
 
         <View style={styles.registerView}>
@@ -96,9 +99,6 @@ function RegisterScreen({ navigation }) {
             <Text style={styles.signUpText}>Login</Text>
           </TouchableOpacity>
         </View>
-
-
-
       </View>
     </SafeAreaView>
   )

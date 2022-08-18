@@ -1,21 +1,15 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import { auth, signOut } from '../firebase/firebase';
-
+import { AuthContext } from '../auth/AuthProvider';
 function HomeScreen({navigation}) {
+  const { logout } = useContext(AuthContext);
+
   return (
     <View>
         <Text>HomeScreen</Text>
         <TouchableOpacity
-          onPress={()=>{
-            navigation.navigate('Login')
-            signOut(auth).then(() => {
-              // Sign-out successful.
-            }).catch((error) => {
-              // An error happened.
-              alert("Error signOut")
-            });
-          }}>
+          onPress={() => logout()}>
           <Text>Log Out</Text>
         </TouchableOpacity>
     </View>

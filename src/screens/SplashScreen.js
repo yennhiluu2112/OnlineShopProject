@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { View, Text, Image, StyleSheet, ActivityIndicator } from 'react-native'
 import Colors from '../assets/colors'
 import { WIDTH_SCREEN, HEIGHT_SCREEN } from '../ultilities/Constant'
 
 function SplashScreen({navigation}) {
-
- 
-
+  useEffect(()=>{
+      setTimeout(() => {
+        navigation.navigate('Login')
+      }, 2500)
+  })
   return (
     <View style={styles.container}>
       <View style={styles.topView}>

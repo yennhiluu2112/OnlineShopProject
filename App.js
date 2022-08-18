@@ -8,11 +8,10 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import Providers from './src/navigations';
 
-
-import Routes from './src/navigations/Routes';
 function App() {
-  return <Routes />;
+  return <Providers />;
   //return <SplashScreen/>
 }
 

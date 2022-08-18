@@ -2,21 +2,29 @@ import React, { useContext, useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import AuthStack from './AuthStack';
 import TabNav from './TabNav';
+import { auth, onAuthStateChanged } from '../firebase/firebase';
+import { AuthContext } from '../auth/AuthProvider';
 export default function Routes() {
-    // useEffect(()=>{
-    //     setTimeout(()=>{
-    //       onAuthStateChanged(auth, (user) => {
-    //         if (user){
-    //             const userId = user.uid
-    //         }
-    //         else{
-    //         }
-    //     })
-    //     },2000)
-    // },[])
+    const { user, setUser } = useContext(AuthContext);
+    const [initializing, setInitializing] = useState(true);
+
+    onAuthStateChanged(auth, (user) => {
+        if (user){
+            setUser(user);
+            if (initializing) setInitializing(false);
+        }
+    })
+
+    useEffect(()=>{
+        // const subscriber = onAuthStateChanged(auth,onAuthStateChanged);
+        // return subscriber; 
+    }, [])
+
+    //if (initializing) return null;
+    
     return (
         <NavigationContainer>
-            {1 ? <TabNav/> : <AuthStack/>}
+            {user ? <TabNav/> : <AuthStack/>}
         </NavigationContainer>
     )
 }
