@@ -9,10 +9,10 @@ import {
   View,
 } from 'react-native';
 import Providers from './src/navigations';
-
+import { HomeScreen } from './src/screens';
 function App() {
-  return <Providers />;
-  //return <SplashScreen/>
+  //return <Providers />;
+  return <HomeScreen/>
 }
 
 const styles = StyleSheet.create({

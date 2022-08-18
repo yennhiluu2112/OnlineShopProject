@@ -10,6 +10,7 @@ function SplashScreen({navigation}) {
       }, 2500)
   })
   return (
+    <SafeAreaView style={styles.view}>
     <View style={styles.container}>
       <View style={styles.topView}>
         <Image style={styles.logo} source={require('../assets/images/logo.png')} />
@@ -18,12 +19,15 @@ function SplashScreen({navigation}) {
       <View style={styles.bottomView}>
         <ActivityIndicator size="large" color="black"/>
       </View>
-        
     </View>
+    </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
+  view:{
+    flex : 1,
+  },
   container:{
     flex: 100,
     justifyContent: 'center',

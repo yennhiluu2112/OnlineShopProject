@@ -1,4 +1,4 @@
-const products = [
+export const productsData = [
     {
         id: "1",
         name: "Gucci T-shirt",
