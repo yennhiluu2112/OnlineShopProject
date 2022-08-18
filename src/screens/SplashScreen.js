@@ -1,13 +1,12 @@
 import React from 'react'
 import { View, Text, Image, StyleSheet, ActivityIndicator } from 'react-native'
+import Colors from '../assets/colors'
 import { WIDTH_SCREEN, HEIGHT_SCREEN } from '../ultilities/Constant'
 
-function SplashScreen() {
-  performTimeConsumingTask = async() => {
-    return new Promise((resolve) => {
-      setTimeout(() => {resolve('result');}, 2000)
-    })
-  }
+function SplashScreen({navigation}) {
+  setTimeout(()=>{
+    navigation.navigate('Login')
+  },2000)
 
   return (
     <View style={styles.container}>

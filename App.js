@@ -9,12 +9,11 @@ import {
   View,
 } from 'react-native';
 
-import SplashScreen from './src/screens/SplashScreen';
 
 import Routes from './src/navigations/Routes';
 function App() {
-  //return <Routes />;
-  return <SplashScreen/>
+  return <Routes />;
+  //return <SplashScreen/>
 }
 
 const styles = StyleSheet.create({
