@@ -94,8 +94,6 @@ const styles = StyleSheet.create({
   descriptionText:{
     fontSize: 15,
     color: 'black',
-
-
   },
   addButton:{
     backgroundColor: Colors.black,
