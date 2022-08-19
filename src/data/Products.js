@@ -32,7 +32,7 @@ export const productsData = [
     {
         id: "4",
         name: "Prada Bag",
-        desciprtion: "This is a Prada bag",
+        desciprtion: "This is a Prada bag dhdhjahdjsahđhưdhưudhuhưudhưhdưhdưhdưhđubcbc dhuhduwhduhduh wdwhduwhduw d wduwhdub whfwhuwduhud ư diwhdahcihcpqoqd  dpofkgkgorgk  rigorkgorkgorg gr o0rgokorg 0r grkgrkgrgk0g  rgi0rg0rgk0rk0",
         price: 2300,
         countInStock: 2,
         rating: 5,

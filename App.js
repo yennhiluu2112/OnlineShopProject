@@ -11,8 +11,8 @@ import {
 import Providers from './src/navigations';
 import { HomeScreen } from './src/screens';
 function App() {
-  //return <Providers />;
-  return <HomeScreen/>
+  return <Providers />;
+  //return <HomeScreen/>
 }
 
 const styles = StyleSheet.create({

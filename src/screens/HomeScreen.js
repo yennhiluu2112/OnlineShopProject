@@ -6,6 +6,7 @@ import HomeSearch from '../components/HomeSearch';
 import {productsData} from '../data/Products';
 import { WIDTH_SCREEN, HEIGHT_SCREEN } from '../ultilities/Constant';
 import ProductItem from '../components/ProductItem';
+import Colors from '../assets/colors';
 function HomeScreen({navigation}) {
   const { logout } = useContext(AuthContext);
   const [products, setProducts] = useState(productsData)
@@ -18,7 +19,7 @@ function HomeScreen({navigation}) {
             data={products}
             numColumns={2}
             renderItem={({item, index})=>
-              <ProductItem item={item}/> 
+              <ProductItem item={item} onPress={()=>{navigation.navigate('SingleProduct', {product:item})}}/> 
             }          
 
           />
@@ -32,7 +33,8 @@ function HomeScreen({navigation}) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#fafcfe',
   },
   smallContainer: {
     flex: 100,
