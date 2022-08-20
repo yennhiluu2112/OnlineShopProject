@@ -12,10 +12,6 @@ import Colors from '../assets/colors'
 import Icon from 'react-native-vector-icons/Feather'
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome5'
 import { CustomButton, InputField } from '../components'
-import {
-    auth,
-    signInWithEmailAndPassword
-  } from '../firebase/firebase'
 import { AuthContext } from '../auth/AuthProvider'
 function LoginScreen({navigation}) {
     const [email, setEmail] = useState('')

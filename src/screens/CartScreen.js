@@ -6,24 +6,27 @@ import { HEIGHT_SCREEN } from '../ultilities/Constant'
 function CartScreen() {
   return (
     <SafeAreaView style={styles.container}>
-    <ScrollView>
       <View style={styles.header}>
         <Text style={styles.title}>Cart</Text>
 
       </View>
       <View style={styles.content}>
-        <CartItem/>
-        <View style={styles.totalView}>
-          <Text style={styles.text}>Total</Text>
-          <View style={styles.totalView1}>
-            <Text style={styles.totalText}>$356</Text>
-          </View>
+        <View style={{flex: 8}}>
+          <CartItem />
         </View>
-        <TouchableOpacity style={styles.checkoutButton}>
-          <Text style={styles.checkoutText}>CHECKOUT</Text>
-        </TouchableOpacity>
+        <View style={{flex: 2}}>
+          <View style={styles.totalView}>
+            <Text style={styles.text}>Total</Text>
+            <View style={styles.totalView1}>
+              <Text style={styles.totalText}>$356</Text>
+            </View>
+          </View>
+          <TouchableOpacity style={styles.checkoutButton}>
+            <Text style={styles.checkoutText}>CHECKOUT</Text>
+          </TouchableOpacity>
+        </View>
+        
       </View>
-      </ScrollView>
     </SafeAreaView>
   )
 }
@@ -52,14 +55,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: 20,
     marginTop: 20,
-    height: HEIGHT_SCREEN*0.06,
+    height: HEIGHT_SCREEN*0.05,
     borderRadius: 20,
     elevation: 1,
     justifyContent: 'space-between',
   },
   totalView1:{
     backgroundColor: Colors.blue,
-    height: HEIGHT_SCREEN*0.06,
+    height: HEIGHT_SCREEN*0.05,
     justifyContent: 'center',
     paddingHorizontal: 30,
     borderRadius: 20,
@@ -76,8 +79,8 @@ const styles = StyleSheet.create({
   },
   checkoutButton:{
     backgroundColor: 'black',
-    height: HEIGHT_SCREEN*0.07,
-    marginTop: 50,
+    height: HEIGHT_SCREEN*0.06,
+    marginTop: 20,
     marginHorizontal: 20,
     borderRadius: 20,
     justifyContent: 'center',

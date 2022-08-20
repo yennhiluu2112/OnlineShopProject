@@ -6632,7 +6632,7 @@
     "prop-types" "^15.6.1"
     "react-native-pixel-perfect" "^1.0.1"
 
-"react-native-pager-view@*":
+"react-native-pager-view@*", "react-native-pager-view@^5.4.25":
   "integrity" "sha512-3drrYwaLat2fYszymZe3nHMPASJ4aJMaxiejfA1V5SK3OygYmdtmV2u5prX7TnjueJzGSyyaCYEr2JlrRt4YPg=="
   "resolved" "https://registry.npmjs.org/react-native-pager-view/-/react-native-pager-view-5.4.25.tgz"
   "version" "5.4.25"
