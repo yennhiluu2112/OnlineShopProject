@@ -5,6 +5,7 @@ import SplashScreen from "./SplashScreen";
 import ProfileScreen from "./ProfileScreen";
 import CartScreen from "./CartScreen";
 import SingleProductScreen from "./SingleProductScreen";
+import PlaceOrderScreen from "./PlaceOrderScreen";
 export {
     LoginScreen,
     HomeScreen,
@@ -12,5 +13,6 @@ export {
     SplashScreen,
     ProfileScreen,
     CartScreen,
-    SingleProductScreen
+    SingleProductScreen,
+    PlaceOrderScreen
 }

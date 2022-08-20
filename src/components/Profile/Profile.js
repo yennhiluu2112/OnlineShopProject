@@ -9,6 +9,7 @@ function Profile() {
     const [email, setEmail] = useState('')
     const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
+    const [address, setAddress] = useState('')
 
     useEffect(()=>{
         setEmail(user.email)
@@ -22,6 +23,7 @@ function Profile() {
                 <ProfileInputField value={email} label={'Email'} onChangeText={text=>setEmail(text)}/>
                 <ProfileInputField value={name} label={'Name'} onChangeText={text=>setName(text)}/>
                 <ProfileInputField value={phone} label={'Phone'} onChangeText={text=>setPhone(text)}/>
+                <ProfileInputField value={address} label={'Address'} onChangeText={text=>setAddress(text)}/>
 
                 <TouchableOpacity style={styles.touchable}>
                     <Text style={styles.touchableText}>SUBMIT</Text>
