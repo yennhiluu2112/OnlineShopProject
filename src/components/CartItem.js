@@ -4,10 +4,16 @@ import { SwipeListView } from 'react-native-swipe-list-view'
 import Colors from '../assets/colors'
 import { productsData } from '../data/Products'
 import { WIDTH_SCREEN, HEIGHT_SCREEN} from '../ultilities/Constant'
-function Swiper() {
+import {  useDispatchCart } from '../cart/CartProvider'
+function Swiper({items}) {
+    const dispatch = useDispatchCart()
+
+    handleDelete = (index) => {
+        dispatch({type: 'DELETE', index})
+    }
     return (
         <SwipeListView 
-        data={productsData}
+        data={items}
         renderItem={
             data => 
             <TouchableOpacity activeOpacity={0.95} style={styles.container}>
@@ -22,8 +28,12 @@ function Swiper() {
             </TouchableOpacity>}
         renderHiddenItem={
             data => 
-            <TouchableOpacity activeOpacity={0.9} style={styles.container2}>
-                <Text style={styles.delete}>Delete</Text>
+            <TouchableOpacity 
+                activeOpacity={0.9} 
+                style={styles.container2}
+                onPress={handleDelete(data.index)}
+            >
+                    <Text style={styles.delete}>Delete</Text>
             </TouchableOpacity>
         }
         rightOpenValue={-65}
@@ -32,10 +42,10 @@ function Swiper() {
     
 }
 
-function CartItem(){
+function CartItem({items}){
     return (
         <SafeAreaView style={styles.itemView}>
-            <Swiper/>
+            <Swiper items={items}/>
         </SafeAreaView>
     )
 

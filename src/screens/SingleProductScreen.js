@@ -4,11 +4,24 @@ import NumericInput from 'react-native-numeric-input';
 import Colors from '../assets/colors';
 import FiveStars from '../components/FiveStars';
 import { WIDTH_SCREEN, HEIGHT_SCREEN } from '../ultilities/Constant';
-
+import { useDispatchCart } from '../cart/CartProvider';
+import Icon from 'react-native-vector-icons/Feather';
 function SingleProductScreen({ route, navigation }) {
   const { product } = route.params;
+  const dispatch = useDispatchCart()
+  const addToCart = (item) => {
+    console.warn(item)
+    dispatch({type: "ADD",item})
+  }
   return (
     <SafeAreaView style={styles.container}>
+        <Icon 
+          name='arrow-left' 
+          color={'black'} 
+          size = {30} 
+          style={{paddingLeft: 10, paddingTop: 10}}
+          onPress={()=>navigation.goBack()}
+        />
         <ScrollView>
           <Image style={styles.itemImage} source={{uri: product.image}}/>
           <View style={styles.smallContainer}>
@@ -41,7 +54,7 @@ function SingleProductScreen({ route, navigation }) {
             </View>
 
             <TouchableOpacity style={styles.addButton}>
-              <Text style={styles.addText}>ADD TO CART</Text>
+              <Text style={styles.addText} onPress={addToCart(product)}>ADD TO CART</Text>
             </TouchableOpacity>
             
             
@@ -59,11 +72,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'white'
   },
   itemImage:{
-    width: WIDTH_SCREEN*0.9,
+    width: WIDTH_SCREEN*0.8,
     height: HEIGHT_SCREEN*0.35,
     resizeMode: 'contain',
     alignSelf: 'center',
-    marginTop: 20
+    marginTop: 0
   },
   smallContainer:{
     paddingHorizontal: 20,
@@ -89,7 +102,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   descriptionView:{
-    height: HEIGHT_SCREEN*0.27,
+    height: HEIGHT_SCREEN*0.25,
   },
   descriptionText:{
     fontSize: 15,

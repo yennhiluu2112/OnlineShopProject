@@ -3,7 +3,10 @@ import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, ScrollView } fr
 import Colors from '../assets/colors'
 import CartItem from '../components/CartItem'
 import { HEIGHT_SCREEN } from '../ultilities/Constant'
+import { useCart } from '../cart/CartProvider'
 function CartScreen() {
+  const items = useCart()
+  const totalPrice = items.reduce((total,b)=> total + b.price, 0)
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -12,13 +15,13 @@ function CartScreen() {
       </View>
       <View style={styles.content}>
         <View style={{flex: 8}}>
-          <CartItem />
+          <CartItem items={items}/>
         </View>
         <View style={{flex: 2}}>
           <View style={styles.totalView}>
             <Text style={styles.text}>Total</Text>
             <View style={styles.totalView1}>
-              <Text style={styles.totalText}>$356</Text>
+              <Text style={styles.totalText}>${totalPrice}</Text>
             </View>
           </View>
           <TouchableOpacity style={styles.checkoutButton}>
