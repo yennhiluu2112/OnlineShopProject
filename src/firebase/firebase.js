@@ -6,7 +6,13 @@ import {
     signInWithEmailAndPassword,
     signOut  
 } from 'firebase/auth';
-import { getDatabase } from 'firebase/database';
+import { 
+    getDatabase,
+    ref as firebaseDatabaseRef,
+    set as firebaseSet,
+    update as firebaseUpdate,
+    onValue as firebaseRead
+} from 'firebase/database';
 const firebaseConfig = {
     apiKey: "AIzaSyC7LuQxg6ItS4W3oWrM05BYE5aTscqP8Wg",
     projectId: "onlineshopapp-d9c16",
@@ -27,5 +33,9 @@ export {
     createUserWithEmailAndPassword,
     onAuthStateChanged,
     signInWithEmailAndPassword,
-    signOut 
+    signOut,
+    firebaseDatabaseRef,
+    firebaseSet,
+    firebaseUpdate,
+    firebaseRead
 }

@@ -4,8 +4,9 @@ import { WIDTH_SCREEN, HEIGHT_SCREEN } from '../../ultilities/Constant'
 import ProfileInputField from './ProfileInputField'
 import { AuthContext } from '../../auth/AuthProvider'
 import Colors from '../../assets/colors'
+
 function Profile() {
-    const { user } = useContext(AuthContext);
+    const { user, update, readData } = useContext(AuthContext);
     const [email, setEmail] = useState('')
     const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
@@ -13,6 +14,10 @@ function Profile() {
 
     useEffect(()=>{
         setEmail(user.email)
+        setPhone(readData.phone)
+        setName(readData.name)
+        setAddress(readData.address)
+
     },[])
 
 
@@ -25,7 +30,11 @@ function Profile() {
                 <ProfileInputField value={phone} label={'Phone'} onChangeText={text=>setPhone(text)}/>
                 <ProfileInputField value={address} label={'Address'} onChangeText={text=>setAddress(text)}/>
 
-                <TouchableOpacity style={styles.touchable}>
+                <TouchableOpacity 
+                    style={styles.touchable}
+                    onPress={()=>{
+                        update(name, address, phone)
+                    }}>
                     <Text style={styles.touchableText}>SUBMIT</Text>
                 </TouchableOpacity>
 

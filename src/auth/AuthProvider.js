@@ -3,7 +3,12 @@ import {
     auth,
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
-    signOut
+    signOut,
+    firebaseSet,
+    firebaseDatabaseRef,
+    firebaseDatabase,
+    firebaseUpdate,
+    firebaseRead
   } from '../firebase/firebase'
 
 const AuthContext = createContext({});
@@ -30,8 +35,19 @@ const AuthProvider = ({children}) => {
                     createUserWithEmailAndPassword(auth, email, password)
                         .then((useCredential) => {
                             const user = useCredential.user
-                            setUser(user)
                             alert('Successfully registered')
+                            setUser(user)
+                            firebaseSet(firebaseDatabaseRef(
+                                firebaseDatabase,
+                                `users/${user.uid}`
+                            ),{
+                                email: user.email,
+                                emailVerified: user.emailVerified,
+                                accessToken: user.accessToken,
+                                name: '',
+                                phone: '',
+                                address: ''
+                            })
                         })
                         .catch((error) => {
                             alert(`Cannot sign up, error ${error.message} Email: ${email}`)
@@ -48,8 +64,35 @@ const AuthProvider = ({children}) => {
                         // An error happened.
                         alert("Error signOut")
                         });
+                },
+
+                update: async(name, address, phone) => {
+                    firebaseUpdate(firebaseDatabaseRef(
+                        firebaseDatabase,
+                        `users/${user.uid}`
+                    ),{
+                        name: name,
+                        address: address,
+                        phone: phone
+                    }).then(()=>{
+                        alert(`Updated successful`)
+                    }).catch((err)=>{
+                        alert(err.message)
+                    })
+                },
+
+                readData: async () =>{
+                    try{
+                        const starCountRef = firebaseDatabaseRef(firebaseDatabase, `users/${user.uid}`)
+                        firebaseRead(starCountRef, (snapshot) => {
+                            const data = snapshot.val()
+                            return data
+                        })
+                    }
+                    catch(error){
+                        alert(error.message)
+                    }
                 }
-                
             }}>
             {children}
 
