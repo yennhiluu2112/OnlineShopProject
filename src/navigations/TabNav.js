@@ -4,6 +4,7 @@ import {
     CartScreen,
     ProfileScreen 
 } from '../screens'
+import CartStack from './CartStack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Colors from '../assets/colors'
 import Icon from 'react-native-vector-icons/Feather'
@@ -41,8 +42,8 @@ function TabNav(props){
             }}
             />
         <Tab.Screen 
-            name={'Cart'} 
-            component={CartScreen}
+            name={'CartStack'} 
+            component={CartStack}
             options={{
                 tabBarLabel: 'Cart',
                 tabBarLabelStyle: {

@@ -6,6 +6,8 @@ import ProfileScreen from "./ProfileScreen";
 import CartScreen from "./CartScreen";
 import SingleProductScreen from "./SingleProductScreen";
 import PlaceOrderScreen from "./PlaceOrderScreen";
+import CartScreen from "./CartScreen";
+import PlaceOrderScreen from "./PlaceOrderScreen";
 export {
     LoginScreen,
     HomeScreen,

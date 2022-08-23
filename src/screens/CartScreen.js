@@ -4,7 +4,7 @@ import Colors from '../assets/colors'
 import CartItem from '../components/CartItem'
 import { HEIGHT_SCREEN } from '../ultilities/Constant'
 import { useCart } from '../cart/CartProvider'
-function CartScreen() {
+function CartScreen({navigation}) {
   const items = useCart()
   const totalPrice = items.reduce((total,b)=> total + b.price, 0)
   return (
@@ -24,7 +24,9 @@ function CartScreen() {
               <Text style={styles.totalText}>${totalPrice}</Text>
             </View>
           </View>
-          <TouchableOpacity style={styles.checkoutButton}>
+          <TouchableOpacity onPress={()=>{
+              navigation.navigate('PlaceOrder')
+          }} style={styles.checkoutButton}>
             <Text style={styles.checkoutText}>CHECKOUT</Text>
           </TouchableOpacity>
         </View>

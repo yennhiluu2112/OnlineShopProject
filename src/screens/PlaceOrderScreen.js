@@ -1,27 +1,55 @@
-import React from 'react'
+import React, { useEffect,useState, useContext } from 'react'
 import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native'
 import Colors from '../assets/colors'
 import Icon from 'react-native-vector-icons/Feather'
 import { HEIGHT_SCREEN, WIDTH_SCREEN } from '../ultilities/Constant'
 import OrderItem from '../components/OrderItem'
-function PlaceOrderScreen() {
+import { AuthContext } from '../../auth/AuthProvider'
+import { useCart, useDispatchCart } from '../cart/CartProvider'
+
+function PlaceOrderScreen({navigation}) {
+  const items = useCart()
+  const totalPrice = items.reduce((total,b)=> total + b.price, 0)
+  const dispatch = useDispatchCart()
+
+  handleRenew = () => {
+      dispatch({type: 'RENEW_CART'})
+  }
+
+  const { user, readData } = useContext(AuthContext);
+  const [name, setName] = useState('')
+  const [phone, setPhone] = useState('')
+  const [address, setAddress] = useState('')
+  
+  useEffect(()=>{
+    setPhone(readData.phone)
+    setName(readData.name)
+    setAddress(readData.address)
+  },[])
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Icon name='user'size={50} color={Colors.blue}/>
-        <Text style={styles.text1}>Nameeeeeeee</Text>
-        <Text style={styles.text2}>0905305999</Text>
-        <Text style={styles.text2}>29 Nam Son 3, Da Nang</Text>
+        <Text style={styles.text1}>{name}</Text>
+        <Text style={styles.text2}>{phone}</Text>
+        <Text style={styles.text2}>{address}</Text>
       </View>
       <View style={styles.content}>
         <View style={styles.totalView}>
-          <Text style={styles.totalText}>$TOTAL</Text>
+          <Text style={styles.totalText}>${totalPrice}</Text>
         </View>
         <Text style={styles.text}>PRODUCTS</Text>
         <View style={{height: HEIGHT_SCREEN*0.5}}>
-          <OrderItem />
+          <OrderItem items={items}/>
         </View>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity 
+          style={styles.button}
+          onPress={()=>{
+            handleRenew()
+            navigation.navigate('Cart')
+          }}
+        >
           <Text style={styles.buttonText}>FINISH</Text>
         </TouchableOpacity>
       </View>

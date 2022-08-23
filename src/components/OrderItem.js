@@ -4,11 +4,12 @@ import Icon from 'react-native-vector-icons/Feather'
 import { productsData } from '../data/Products'
 import { HEIGHT_SCREEN, WIDTH_SCREEN } from '../ultilities/Constant'
 import Colors from '../assets/colors'
-function OrderItem(props){
+function OrderItem({items}){
+
     return (
         <FlatList
             showsVerticalScrollIndicator={false}
-            data={productsData.slice(0,3)}
+            data={items}
             keyExtractor={(item)=>item.id}
             renderItem={({item})=> (
                 <TouchableOpacity activeOpacity={0.95} style={styles.container}>
