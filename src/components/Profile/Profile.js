@@ -6,7 +6,7 @@ import { AuthContext } from '../../auth/AuthProvider'
 import Colors from '../../assets/colors'
 
 function Profile() {
-    const { user, update, readData } = useContext(AuthContext);
+    const { user, update, readData, logout } = useContext(AuthContext);
     const [email, setEmail] = useState('')
     const [name, setName] = useState('')
     const [phone, setPhone] = useState('')
@@ -30,13 +30,30 @@ function Profile() {
                 <ProfileInputField value={phone} label={'Phone'} onChangeText={text=>setPhone(text)}/>
                 <ProfileInputField value={address} label={'Address'} onChangeText={text=>setAddress(text)}/>
 
-                <TouchableOpacity 
-                    style={styles.touchable}
-                    onPress={()=>{
-                        update(name, address, phone)
-                    }}>
-                    <Text style={styles.touchableText}>SUBMIT</Text>
-                </TouchableOpacity>
+
+                <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+                    <TouchableOpacity 
+                        style={styles.touchable}
+                        onPress={()=>{
+                            update(name, address, phone)
+                        }}>
+                        <Text style={styles.touchableText}>SUBMIT</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity 
+                        style={styles.touchable}
+                        onPress={()=>{
+                            logout()
+                            setEmail('')
+                            setName('')
+                            setPhone('')
+                            setAddress('')
+                        }}>
+                        <Text style={styles.touchableText}>LOG OUT</Text>
+                    </TouchableOpacity>
+
+                </View>
+
+                
 
             </ScrollView>
             
@@ -58,6 +75,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         justifyContent: 'center',
         alignItems: 'center',
+        marginHorizontal: 10
     },
     touchableText:{
         fontWeight: 'bold',

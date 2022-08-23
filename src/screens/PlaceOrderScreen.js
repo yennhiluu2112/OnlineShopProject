@@ -4,7 +4,7 @@ import Colors from '../assets/colors'
 import Icon from 'react-native-vector-icons/Feather'
 import { HEIGHT_SCREEN, WIDTH_SCREEN } from '../ultilities/Constant'
 import OrderItem from '../components/OrderItem'
-import { AuthContext } from '../../auth/AuthProvider'
+import { AuthContext } from '../auth/AuthProvider'
 import { useCart, useDispatchCart } from '../cart/CartProvider'
 
 function PlaceOrderScreen({navigation}) {
