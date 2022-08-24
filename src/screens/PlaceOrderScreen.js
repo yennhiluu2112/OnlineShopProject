@@ -22,9 +22,9 @@ function PlaceOrderScreen({navigation}) {
   const [address, setAddress] = useState('')
   
   useEffect(()=>{
-    setPhone(readData.phone)
-    setName(readData.name)
-    setAddress(readData.address)
+    setPhone(readData().phone)
+    setName(readData().name)
+    setAddress(readData().address)
   },[])
 
   return (

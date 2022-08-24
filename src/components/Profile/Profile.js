@@ -13,11 +13,11 @@ function Profile() {
     const [address, setAddress] = useState('')
 
     useEffect(()=>{
+        const data = readData()
         setEmail(user.email)
-        setPhone(readData().phone)
-        setName(readData().name)
-        setAddress(readData().address)
-
+        setPhone(data.phone)
+        setName(data.name)
+        setAddress(data.address)
     },[])
 
 
