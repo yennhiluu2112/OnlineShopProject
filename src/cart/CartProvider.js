@@ -7,7 +7,28 @@ const reducer = (state, action) =>{
     switch(action.type){
         case "ADD":
             //state.push()
-            return [...state, action.item]
+            if (state.length > 0){
+                const newArr1 = [...state]
+                for (let i = 0; i < newArr1.length; i++) {
+                    if (!newArr1[i].id.includes(action.item.id)){
+                        action.item.countCart=1
+                        return [...newArr1, action.item]
+                    }
+                    else{
+                        newArr1[i].countCart = newArr1[i].countCart + 1
+                        return [...newArr1]
+                    }
+                }
+                newArr1.forEach(eachState => {
+                    console.warn(eachState.name)
+                    
+                })
+            }
+            else{
+                action.item.countCart=1
+                return [...state, action.item]
+            }
+            
         case "DELETE":
             const newArr = [...state]
             newArr.splice(action.index, 1)

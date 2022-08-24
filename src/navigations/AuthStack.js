@@ -9,11 +9,11 @@ import {
 const Stack = createNativeStackNavigator();
 
 export default function AuthStack(){
-    const [isFirstLaunch, setIsFirstLaunch] = useState(null);
+    const [isFirstLaunch, setIsFirstLaunch] = useState(true);
     let routeName
     useEffect(() => {
         setIsFirstLaunch(false)
-      }, []);
+    }, [isFirstLaunch]);
 
     if (isFirstLaunch === null) {
         return null;

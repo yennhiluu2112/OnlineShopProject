@@ -1,12 +1,18 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, ScrollView } from 'react-native'
 import Colors from '../assets/colors'
 import CartItem from '../components/CartItem'
 import { HEIGHT_SCREEN } from '../ultilities/Constant'
-import { useCart } from '../cart/CartProvider'
-function CartScreen({navigation}) {
+import { useCart, useDispatchCart } from '../cart/CartProvider'
+export default function CartScreen({navigation}) {
+  const [totalPrice, setTotalPrice] = useState(0)
   const items = useCart()
-  const totalPrice = items.reduce((total,b)=> total + b.price, 0)
+
+  useEffect(()=>{
+    setTotalPrice(items.reduce((total,b)=> total + b.price, 0))
+  },[totalPrice])
+ 
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -97,5 +103,3 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   }
 })
-
-export default CartScreen

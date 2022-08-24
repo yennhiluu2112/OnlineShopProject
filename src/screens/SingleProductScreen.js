@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text, Image, StyleSheet, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native'
 import NumericInput from 'react-native-numeric-input';
 import Colors from '../assets/colors';
@@ -7,10 +7,9 @@ import { WIDTH_SCREEN, HEIGHT_SCREEN } from '../ultilities/Constant';
 import { useDispatchCart } from '../cart/CartProvider';
 import Icon from 'react-native-vector-icons/Feather';
 function SingleProductScreen({ route, navigation }) {
-  const { product } = route.params;
+  const {product}  = route.params;
   const dispatch = useDispatchCart()
   const addToCart = (item) => {
-    console.warn(item)
     dispatch({type: "ADD",item})
   }
   return (
@@ -53,8 +52,16 @@ function SingleProductScreen({ route, navigation }) {
               <Text style={styles.descriptionText}>{product.desciprtion}</Text>
             </View>
 
-            <TouchableOpacity style={styles.addButton}>
-              <Text style={styles.addText} onPress={addToCart(product)}>ADD TO CART</Text>
+            <TouchableOpacity style={styles.addButton} onPress={()=>{
+              if (product.countInStock){
+                addToCart(product)
+              }
+              else{
+                alert("This product has been out of stock")
+              }
+              
+            }}>
+              <Text style={styles.addText}>ADD TO CART</Text>
             </TouchableOpacity>
             
             

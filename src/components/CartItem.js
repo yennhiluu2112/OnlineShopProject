@@ -1,16 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { View,Image, Text, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native'
 import { SwipeListView } from 'react-native-swipe-list-view'
 import Colors from '../assets/colors'
 import { productsData } from '../data/Products'
 import { WIDTH_SCREEN, HEIGHT_SCREEN} from '../ultilities/Constant'
-import {  useDispatchCart } from '../cart/CartProvider'
-function Swiper({items}) {
+import { useDispatchCart } from '../cart/CartProvider'
+export function Swiper({items}) {
     const dispatch = useDispatchCart()
-
-    handleDelete = (index) => {
+    const handleDelete = (index) => {
         dispatch({type: 'DELETE', index})
     }
+    
     return (
         <SwipeListView 
         data={items}
@@ -23,7 +23,7 @@ function Swiper({items}) {
                     <Text style={styles.itemPrice}>${data.item.price}</Text>
                 </View>
                 <View style={styles.countView}>
-                    <Text style={styles.itemCount}>{data.item.countInStock}</Text>
+                    <Text style={styles.itemCount}>{data.item.countCart}</Text>
                 </View>
             </TouchableOpacity>}
         renderHiddenItem={
@@ -31,7 +31,7 @@ function Swiper({items}) {
             <TouchableOpacity 
                 activeOpacity={0.9} 
                 style={styles.container2}
-                onPress={handleDelete(data.index)}
+                onPress={()=>handleDelete(data.index)}
             >
                     <Text style={styles.delete}>Delete</Text>
             </TouchableOpacity>

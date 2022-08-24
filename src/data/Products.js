@@ -7,7 +7,7 @@ export const productsData = [
         countInStock: 10,
         rating: 5,
         numReviews: 4,
-        image: 'https://p7.hiclipart.com/preview/56/907/653/t-shirt-gucci-clothing-fashion-t-shirt.jpg'
+        image: 'https://p7.hiclipart.com/preview/56/907/653/t-shirt-gucci-clothing-fashion-t-shirt.jpg',
     },
     {
         id: "2",

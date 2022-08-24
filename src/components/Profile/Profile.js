@@ -14,9 +14,9 @@ function Profile() {
 
     useEffect(()=>{
         setEmail(user.email)
-        setPhone(readData.phone)
-        setName(readData.name)
-        setAddress(readData.address)
+        setPhone(readData().phone)
+        setName(readData().name)
+        setAddress(readData().address)
 
     },[])
 
@@ -43,10 +43,6 @@ function Profile() {
                         style={styles.touchable}
                         onPress={()=>{
                             logout()
-                            setEmail('')
-                            setName('')
-                            setPhone('')
-                            setAddress('')
                         }}>
                         <Text style={styles.touchableText}>LOG OUT</Text>
                     </TouchableOpacity>

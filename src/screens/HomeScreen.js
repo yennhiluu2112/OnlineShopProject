@@ -8,7 +8,6 @@ import ProductItem from '../components/ProductItem';
 import Colors from '../assets/colors';
 import Icon from 'react-native-vector-icons/Feather';
 function HomeScreen({navigation}) {
-  const { logout } = useContext(AuthContext);
   const [products, setProducts] = useState(productsData)
   const [searchText, setSearchText] = useState('')
   return (

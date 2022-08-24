@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { View, Text, Image, StyleSheet, ActivityIndicator } from 'react-native'
+import { View, Text, Image, StyleSheet, ActivityIndicator, SafeAreaView } from 'react-native'
 import Colors from '../assets/colors'
 import { WIDTH_SCREEN, HEIGHT_SCREEN } from '../ultilities/Constant'
 
